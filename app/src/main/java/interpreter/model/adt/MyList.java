@@ -4,6 +4,7 @@ import interpreter.exceptions.ADTException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class MyList<T> implements IList<T>{
     private final List<T> list = new ArrayList<>();
@@ -26,5 +27,9 @@ public class MyList<T> implements IList<T>{
     }
 
     @Override
-    public String toString() { return list.toString(); }
+    public String toString() {
+        StringJoiner sj = new StringJoiner(", ", "{", "}");
+        for (T elem : list) sj.add(elem.toString());
+        return sj.toString();
+    }
 }

@@ -1,7 +1,10 @@
 package interpreter;
 
+import interpreter.view.Examples;
+import interpreter.view.TextMenu;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Toy interpreter");
+        new TextMenu(Examples.ALL).show();
     }
 }

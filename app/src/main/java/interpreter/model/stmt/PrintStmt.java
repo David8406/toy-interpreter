@@ -11,4 +11,9 @@ public record PrintStmt(IExp exp) implements IStmt {
         state.getOut().add(exp.eval(state.getSymTable()));
         return state;
     }
+
+    @Override
+    public String toString() {
+        return "print(" + exp + ")";
+    }
 }

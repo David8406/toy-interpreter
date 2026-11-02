@@ -4,6 +4,7 @@ import interpreter.exceptions.ADTException;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.List;
 import java.util.StringJoiner;
 
 public class MyStack<T> implements IStack<T>{
@@ -30,5 +31,10 @@ public class MyStack<T> implements IStack<T>{
         StringJoiner sj = new StringJoiner(" | ", "{", "}");
         for (T elem : stack) sj.add(elem.toString());
         return sj.toString();
+    }
+
+    @Override
+    public List<T> toList() {
+        return List.copyOf(stack);
     }
 }

@@ -32,4 +32,9 @@ public class MyList<T> implements IList<T>{
         for (T elem : list) sj.add(elem.toString());
         return sj.toString();
     }
+
+    @Override
+    public List<T> toList() {
+        return List.copyOf(list);
+    }
 }

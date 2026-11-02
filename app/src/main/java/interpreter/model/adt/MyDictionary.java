@@ -37,4 +37,15 @@ public class MyDictionary<K, V> implements IDictionary<K, V>{
         map.forEach((k, v) -> sj.add(k + " -> " + v));
         return sj.toString();
     }
+
+    @Override
+    public void remove(K key) throws ADTException {
+        if (!map.containsKey(key)) throw new ADTException("key " + key + " is not defined");
+        map.remove(key);
+    }
+
+    @Override
+    public Map<K, V> toMap() {
+        return Map.copyOf(map);
+    }
 }

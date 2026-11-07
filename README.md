@@ -1,7 +1,7 @@
 # toy-interpreter
 
 Interpreter for a small imperative language, written in Java. I built it for my Advanced Programming
-Methods course and extended it every couple of weeks with new language features.
+Methods course and I am extending it every couple of weeks with new language features.
 
 It runs a program one step at a time and prints the program state after each step: the execution
 stack, the variables, the output and the open files. Types are checked at run time, and errors like

@@ -6,7 +6,9 @@ import interpreter.model.PrgState;
 import interpreter.model.stmt.IStmt;
 import interpreter.model.stmt.VarDeclStmt;
 import interpreter.model.type.IntType;
+import interpreter.model.type.RefType;
 import interpreter.model.value.IntValue;
+import interpreter.model.value.RefValue;
 import interpreter.repository.Repository;
 import interpreter.view.Examples;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -112,5 +116,40 @@ class ControllerTest {
         PrgState s = run(Examples.EX5);
         assertEquals(1, s.getOut().size());
         assertEquals(new IntValue(5), s.getOut().get(0));
+    }
+
+    @Test
+    void example6() throws MyException {
+        PrgState s = run(Examples.EX6);
+        assertEquals(List.of(new RefValue(1, new IntType()), new RefValue(2, new RefType(new IntType()))),
+                s.getOut().toList());
+        assertEquals(Map.of(1, new IntValue(20), 2, new RefValue(1, new IntType())),
+                s.getHeap().getContent());
+    }
+
+    @Test
+    void example7PrintsTwentyAndTwentyFive() throws MyException {
+        PrgState s = run(Examples.EX7);
+        assertEquals(List.of(new IntValue(20), new IntValue(25)), s.getOut().toList());
+    }
+
+    @Test
+    void example8PrintsTwentyAndThirtyFive() throws MyException {
+        PrgState s = run(Examples.EX8);
+        assertEquals(List.of(new IntValue(20), new IntValue(35)), s.getOut().toList());
+        assertEquals(Map.of(1, new IntValue(30)), s.getHeap().getContent());
+    }
+
+    @Test
+    void example9PrintsTwentyWithTheSafeCollector() throws MyException {
+        PrgState s = run(Examples.EX9);
+        assertEquals(List.of(new IntValue(20)), s.getOut().toList());
+    }
+
+    @Test
+    void example10CountsDown() throws MyException {
+        PrgState s = run(Examples.EX10);
+        assertEquals(List.of(new IntValue(4), new IntValue(3), new IntValue(2), new IntValue(1), new IntValue(0)),
+                s.getOut().toList());
     }
 }

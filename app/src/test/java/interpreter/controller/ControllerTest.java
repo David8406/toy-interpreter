@@ -85,7 +85,7 @@ class ControllerTest {
         run(Examples.EX1);
         String log = Files.readString(dir.resolve("log.txt"));
         long entries = log.lines().filter(line -> line.equals("ExeStack:")).count();
-        assertEquals(6, entries);
+        assertEquals(1 + 5 * 2, entries);
     }
 
     @Test
